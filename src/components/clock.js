@@ -13,7 +13,6 @@ class Clock extends Component {
         this.birthday = props.birthdayFormState.startDate.toString();
 
         this.getTimeRemaining = this.getTimeRemaining.bind(this);
-        this.getAge = this.getAge.bind(this);
     }
 
     getTimeRemaining(birthday) {
@@ -52,7 +51,7 @@ class Clock extends Component {
         }
     }
 
-    getAge() {
+    getAge = functionr() {
         var bday = new Date(this.birthday);
         let today = new Date();
         
@@ -61,13 +60,17 @@ class Clock extends Component {
         var yearsOld = Number((daysOld/365).toFixed(0));
 
         return yearsOld;
-    }
+    }.bind(this);
 
     componentDidMount() {
         this.timer = setInterval(() => {
             const timeRemaining = this.getTimeRemaining(this.birthday);
             this.setState({ timeRemaining: timeRemaining })
         }, 1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
     
     render() {
