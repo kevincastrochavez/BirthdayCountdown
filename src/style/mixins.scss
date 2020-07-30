@@ -4,3 +4,8 @@
     background-color: $color;
     clip-path: $clip-path;
 }
+
+@mixin clock-dimensions {
+    height: 20%;
+    width: 71.2%;
+}
