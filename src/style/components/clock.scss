@@ -59,3 +59,16 @@
     bottom: 15%;
     width: 200%;
 }
+
+ul li {
+    list-style: none;
+    color: var(--yellow-secondary);
+    font-size: 22px;
+    font-family: var(--roboto-condensed);
+}
+
+ul p {
+    color: white;
+    font-size: 80px;
+    line-height: 80px;
+}
