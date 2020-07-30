@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 class Clock extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             timeRemaining: this.getTimeRemaining(props.birthdayFormState.startDate.toString())
@@ -13,6 +13,7 @@ class Clock extends Component {
         this.birthday = props.birthdayFormState.startDate.toString();
 
         this.getTimeRemaining = this.getTimeRemaining.bind(this);
+        this.getAge = this.getAge.bind(this);
     }
 
     getTimeRemaining(birthday) {
@@ -34,6 +35,17 @@ class Clock extends Component {
         }
     }
 
+    getAge() {
+        var bday = new Date(this.birthday);
+        let today = new Date();
+        
+        var distance = today.getTime() - bday.getTime();
+        var daysOld = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var yearsOld = Number((daysOld/365).toFixed(0));
+
+        return yearsOld;
+    }
+
     componentDidMount() {
         this.timer = setInterval(() => {
             const timeRemaining = this.getTimeRemaining(this.birthday);
@@ -46,10 +58,16 @@ class Clock extends Component {
         
         return (
             <div>
-                <div>DAYS {data.days}</div>
-                <div>HRS {data.hours}</div>
-                <div>MINS {data.minutes}</div>
-                <div>SECS {data.seconds}</div>
+                <div>
+                    <div>DAYS {data.days}</div>
+                    <div>HRS {data.hours}</div>
+                    <div>MINS {data.minutes}</div>
+                    <div>SECS {data.seconds}</div>
+                </div>
+
+                <div>
+                    {<h4>Remaining until you are {this.getAge()}</h4>}
+                </div>
             </div>
         );
     };
